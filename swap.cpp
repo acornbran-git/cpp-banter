@@ -1,7 +1,4 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <vector>
 
 void swap(int *a, int *b)
 {
