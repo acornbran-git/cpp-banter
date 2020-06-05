@@ -16,6 +16,12 @@
 # Mono auto generated files
 mono_crash.*
 
+# remove build folder
+**/build/**
+./build/**
+/**/*.bin
+/**/*.exe
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
