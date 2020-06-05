@@ -1,5 +1,5 @@
-#ifndef PALINDROME_DLL_H
-#define PALINDROME_DLL_H
+#ifndef COMMON_DLL_H
+#define COMMON_DLL_H
 
 #include <Common/EvolutionPlatformHelper.h>
 
