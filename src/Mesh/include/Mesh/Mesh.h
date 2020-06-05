@@ -9,6 +9,7 @@ namespace evolution
 {
 class MESH_EXPORT Mesh {
 public:
+	Mesh() {};
 };
 
 } // namespace evolution
