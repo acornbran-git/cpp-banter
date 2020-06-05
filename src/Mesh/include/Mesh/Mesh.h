@@ -4,7 +4,7 @@
 #include <Mesh/MeshDLL.h>
 
 #include <Common/Vector3.h>
-
+#include <string>
 #include <vector>
 
 namespace evolution
