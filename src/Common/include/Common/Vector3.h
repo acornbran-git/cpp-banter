@@ -15,8 +15,20 @@ public:
     {}
 
     // copy constructor
-
+    Vector3(const Vector3& vect) 
+        : m_x(vect.m_x),
+        m_y(vect.m_y),
+        m_z(vect.m_z)
+    {}
+    
     // assignment operator
+
+    void operator = (const Vector3& vect)
+    {
+        m_x = vect.m_x;
+        m_y = vect.m_y;
+        m_z = vect.m_z;
+    }
 
     // dot product
     float dot(const Vector3& v2) const;
