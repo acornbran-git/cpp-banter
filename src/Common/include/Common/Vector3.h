@@ -2,6 +2,8 @@
 #define COMMON_VECTOR3_H
 
 #include <Common/CommonDLL.h>
+#include <math.h>
+
 
 namespace evolution
 {
@@ -31,7 +33,13 @@ public:
     }
 
     // dot product
-    float dot(const Vector3& v2) const;
+    float dot(const Vector3& v2) const
+    {
+        float magV1 = pow((pow(m_x, 2.0) + pow(m_y, 2.0) + pow(m_z, 2.0)), 0.5);
+        float magV2 = pow((pow(v2.m_x, 2.0) + pow(v2.m_y, 2.0) + pow(v2.m_z, 2.0)), 0.5);
+        float theta = (m_x*v2.m_x + m_y*v2.m_y + m_z*v2.m_z)/(magV1*magV2);
+        return theta;
+    }
     Vector3 cross(const Vector3& v2) const ;
     
     
