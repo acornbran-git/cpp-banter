@@ -32,15 +32,28 @@ public:
         m_z = vect.m_z;
     }
 
+    float mag()
+    {
+        float mag=sqrt(pow(m_x,2)+ pow(m_y,2)+ pow(m_z,2));
+        return mag;
+    }
+    
+    Vector3 norm()
+    {
+        Vector3 norm;
+        norm.m_x = m_x / mag();
+        norm.m_y = m_y / mag();
+        norm.m_z = m_z / mag();
+        return norm;
+    }
+
     // dot product
     float dot(const Vector3& v2) const
     {
-        float magV1 = pow((pow(m_x, 2.0) + pow(m_y, 2.0) + pow(m_z, 2.0)), 0.5);
-        float magV2 = pow((pow(v2.m_x, 2.0) + pow(v2.m_y, 2.0) + pow(v2.m_z, 2.0)), 0.5);
-        float theta = (m_x*v2.m_x + m_y*v2.m_y + m_z*v2.m_z)/(magV1*magV2);
+        float theta;
         return theta;
     }
-    Vector3 cross(const Vector3& v2) const ;
+    Vector3 cross(const Vector3& v2) const;
     
     
 private:
