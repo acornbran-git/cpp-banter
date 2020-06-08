@@ -16,6 +16,12 @@ public:
         m_z(0.0f) 
     {}
 
+    Vector3(float x, float y, float z)
+        : m_x(x),
+        m_y(y),
+        m_z(z)
+    {}
+
     // copy constructor
     Vector3(const Vector3& vect) 
         : m_x(vect.m_x),
@@ -48,9 +54,13 @@ public:
     }
 
     // dot product
-    float dot(const Vector3& v2) const
+    float dot(Vector3& v2) const
     {
-        float theta;
+        Vector3 v1;
+        Vector3 v1Norm = v1.norm();
+        Vector3 v2Norm = v2.norm();
+        float fract = ((v1Norm.m_x*v2Norm.m_x)+(v1Norm.m_y*v2Norm.m_y)+(v1Norm.m_z*v2Norm.m_z)) / (v1.mag() * v2.mag());
+        float theta = acos(fract);
         return theta;
     }
     Vector3 cross(const Vector3& v2) const;
