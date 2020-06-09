@@ -4,7 +4,6 @@
 #include <Common/CommonDLL.h>
 #include <math.h>
 
-
 namespace evolution
 {
 class COMMON_EXPORT Vector3 {
@@ -30,42 +29,43 @@ public:
     {}
     
     // assignment operator
-
-    void operator = (const Vector3& vect)
-    {
+    void operator = (const Vector3& vect) {
         m_x = vect.m_x;
         m_y = vect.m_y;
         m_z = vect.m_z;
     }
 
-    float mag()
-    {
-        float mag=sqrt(pow(m_x,2)+ pow(m_y,2)+ pow(m_z,2));
-        return mag;
+    float mag() const  {
+        return sqrt(pow(m_x,2)+ pow(m_y,2)+ pow(m_z,2));
     }
     
-    Vector3 norm()
-    {
-        Vector3 norm;
-        norm.m_x = m_x / mag();
-        norm.m_y = m_y / mag();
-        norm.m_z = m_z / mag();
-        return norm;
+    Vector3 norm() const {
+        float x = m_x;
+        float y = m_y;
+        float z = m_z;
+        const float length = mag();
+        x /= length;
+        y /= length;
+        z /= length;
+        return Vector3(x, y, z);
     }
 
     // dot product
-    float dot(Vector3& v2) const
-    {
-        Vector3 v1;
-        Vector3 v1Norm = v1.norm();
-        Vector3 v2Norm = v2.norm();
-        float fract = ((v1Norm.m_x*v2Norm.m_x)+(v1Norm.m_y*v2Norm.m_y)+(v1Norm.m_z*v2Norm.m_z)) / (v1.mag() * v2.mag());
-        float theta = acos(fract);
-        return theta;
+    float dot(Vector3& v2) const {
+        const Vector3 v1Unit(this->norm());
+        const Vector3 v2Unit(v2.norm());
+        return ((v1Unit.m_x * v2Unit.m_x) + (v1Unit.m_y * v2Unit.m_y) + (v1Unit.m_z * v2Unit.m_z));
     }
-    Vector3 cross(const Vector3& v2) const;
-    
-    
+
+    Vector3 cross(const Vector3& vect2) const {
+        const Vector3 v1Unit(this->norm());
+        const Vector3 v2Unit(vect2.norm());
+        float x = v1Unit.m_y * v2Unit.m_z - v1Unit.m_z * v2Unit.m_y;
+        float y = v1Unit.m_z * v2Unit.m_x - v1Unit.m_x * v2Unit.m_z;
+        float z = v1Unit.m_x * v2Unit.m_y - v1Unit.m_y * v2Unit.m_x;
+        return Vector3(x, y, z);
+    }
+     
 private:
     float m_x;
     float m_y;
